@@ -1,8 +1,12 @@
-Directories:
+DIRECTORY DESCRIPTIONS
 
-lib - database files (.csv).
+"lib" - dependency files (jquery, d3, socket.io, etc.).
 
-static/scripts - js files.
-stactic/css - css files.
+"data" - database files (tab-delimited).
+"data/userdata" - json files generated for each user when they run the app. Subfolders for each user should be named by the unique username provided.
 
-templates - html files.
+"static/scripts" - js files.
+"stactic/css" - css files.
+"static/media" - images and video files.
+
+"templates" - html files.
