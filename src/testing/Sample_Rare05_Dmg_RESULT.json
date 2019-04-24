@@ -1,0 +1,117 @@
+{
+	"1": {
+		"RERE": {
+			"RERE:NM_012102:exon19:c.C2381T:p.P794L": {
+				"pathogenicity": "benign", 
+				"defintions": ["PM2", "PP3", "BA1"]
+			}
+		},
+		"KCNN3": {
+			"KCNN3:NM_001204087:exon1:c.241_242insAGCAGCAGCAGC:p.P81delinsQQQQP": {
+				"pathogenicity": "benign", 
+				"defintions": ["PM2", "PM4", "PP3", "BA1", "BP4"]
+			}
+		}
+	}, 
+	"7": {
+		"FAM20C": {
+			"FAM20C:NM_020223:exon4:c.951_952insGACAGGTGAGCCCTTCCTTCCTCCCTCCATCCGC:p.L317_D318delinsLDRX": {
+				"pathogenicity": "benign", 
+				"defintions": ["PM2", "PP3", "BA1"]
+			}
+		}
+	}, 
+	"11": {
+		"KRTAP5-7": {
+			"KRTAP5-7:NM_001012503:exon1:c.329_330insCTGCTGCCAGTCCAGCTGCTGTAAGCCCTG:p.S110delinsSCCQSSCCKPC": {
+				"pathogenicity": "benign", 
+				"defintions": ["PM2", "PP3", "BA1", "BP3", "BP4"]
+			}
+		}
+	},
+	"14": {
+		"SAMD4A": {
+			"SAMD4A:NM_015589:exon6:c.G1450T:p.A484S": {
+				"pathogenicity": "benign", 
+				"defintions": ["PM2", "PP3", "BA1", "BP4"]
+			}
+		}
+	},
+	"15": {
+		"CHRNB4": {
+			"CHRNB4:NM_001256567:exon5:c.G677A:p.G226D": {
+				"pathogenicity": "benign", 
+				"defintions": ["PM2", "PP3", "BA1"]
+			}
+		}
+	},
+	"16": {
+		"C1QTNF8": {
+			"C1QTNF8:NM_207419:exon4:c.763+1G>T": {
+				"pathogenicity": "benign", 
+				"defintions": ["PM2", "PP3", "BA1", "BP4"]
+			}
+		},
+		"NTN3": {
+			"NTN3:NM_006181:exon1:c.142_195del:p.48_65del": {
+				"pathogenicity": "benign", 
+				"defintions": array
+				"defintions": ["PM2", "PP3", "BA1", "BP4"]
+			}
+		},
+		"CES3": {
+			"CES3:NM_024922:exon9:c.C1099T:p.R367W": {
+				"pathogenicity": "benign", 
+				"defintions": ["PM2", "BA1"]
+			}
+		}
+	},
+	"19": {
+		"FBN3": {
+			"FBN3:NM_032447:exon59:c.G7412A:p.R2471H": {
+				"pathogenicity": "benign", 
+				"defintions": ["PM2", "PP3", "BA1"]
+			}
+		}
+	},
+	"22": {
+		"CACNA1I": {
+			"CACNA1I:NM_001003406:exon31:c.C5180T:p.P1727L": {
+				"pathogenicity": "benign", 
+				"defintions": ["PM2", "PP3", "BA1"]
+			}
+		}
+	},
+	"X": {
+		"ARMCX4": {
+			"ARMCX4:NM_001256155:exon2:c.5462delC:p.A1821fs": {
+				"pathogenicity": "benign", 
+				"defintions": ["PM2", "PP3", "BA1", "BP4"]
+			}
+		}
+	},
+	"2": {
+		"ALMS1": {
+			"ALMS1:NM_015120:exon1:c.45_46insGAGGAA:p.E15delinsEEE": {
+				"pathogenicity": "likely benign", 
+				"defintions": ["PM2", "PP3", "BP3", "BP4"]
+			}
+		}
+	},
+	"12": {
+		"ARL6IP4": {
+			"ARL6IP4:NM_001278379:exon2:c.G304A:p.A102T": {
+				"pathogenicity": "likely benign", 
+				"defintions": ["PM2", "PP3", "BP4", "BP7"]
+			}
+		}
+	},
+	"17": {
+		"KDM6B": {
+			"KDM6B:NM_001080424:exon11:c.1417_1419del:p.473_473del": {
+				"pathogenicity": "likely benign", 
+				"defintions": ["PM2", "PP3", "BP3", "BP4"]
+			}
+		}
+	}
+}
