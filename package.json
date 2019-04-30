@@ -1,0 +1,27 @@
+{
+  "name": "gvv",
+  "version": "1.0.0",
+  "description": "Gene Variant Validation",
+  "main": "src/js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/veronicaandric/GVV.git"
+  },
+  "keywords": [
+    "gvv"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/veronicaandric/GVV/issues"
+  },
+  "homepage": "https://github.com/veronicaandric/GVV#readme",
+  "devDependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0",
+    "tuio": "^1.0.0"
+  }
+}
