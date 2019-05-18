@@ -4,7 +4,9 @@
   "description": "Gene Variant Validation",
   "main": "src/js/index.js",
   "scripts": {
-    "start": "node server/server.js",
+    "setup": "sh gvvSetup.sh",
+    "start": "node server/server.js && parcel watch src/index.html",
+    "build": "parcel build src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,6 +24,7 @@
   "homepage": "https://github.com/veronicaandric/GVV#readme",
   "devDependencies": {
     "express": "^4.16.4",
+    "parcel-bundler": "^1.12.3",
     "socket.io": "^2.2.0",
     "tuio": "^1.0.0"
   }
