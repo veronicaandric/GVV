@@ -1,0 +1,10 @@
+{
+  "extends": ["stylelint-prettier/recommended"],
+  "ignoreFiles": [
+      "**/acmg_processing/",
+      "**/data/",
+      "**/karyotypePics/",
+      "**/src/testing/",
+      "**/src/lib/"
+  ]
+}

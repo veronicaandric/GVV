@@ -1,49 +1,48 @@
-$( document ).ready(function() {
-	// Get data
-	$.getJSON( "testing/Sample_Rare05_Dmg_RESULT_Copy.json").done(function(d) {
-		console.log(d)
-		
-		/* Init Karyotype Header */
-		const selectionBar = $('#selection-bar');
-		const numChromosomes = 24;
+$(document).ready(() => {
+  // Get data
+  $.getJSON('testing/Sample_Rare05_Dmg_RESULT_Copy.json').done((d) => {
+    console.log(d);
 
-		for(let i=0; i<numChromosomes; i++) {
-			let id = 'chromosome' + (i+1);
-			let img = "<img id='"+ id +"' class='chromosome not-selected' src='assets/karyotypes/chromosome" + (i+1) + ".jpg' />";
-			selectionBar.append(img);
-		}
+    /* Init Karyotype Header */
+    const selectionBar = $('#selection-bar');
+    const numChromosomes = 24;
 
-		/* Init PaperJS Scene */
-		const canvasOpts = {
-			height: $(document).height() - (selectionBar.height()*5),
-			width: $(document).width() - 25
-		}
+    for (let i = 0; i < numChromosomes; i++) {
+      const id = `chromosome${i + 1}`;
+      const img = `<img id='${id}' class='chromosome not-selected' src='assets/karyotypes/chromosome${i + 1}.jpg' />`;
+      selectionBar.append(img);
+    }
 
-		const scene = new SceneManager();
-		const canvas = scene.initCanvas('canvas', canvasOpts);
+    /* Init PaperJS Scene */
+    const canvasOpts = {
+      height: $(document).height() - (selectionBar.height() * 5),
+      width: $(document).width() - 25,
+    };
 
-		$('.chromosome').on("click", (ev) => initChromosome(ev.target.id, scene, d) );
-	})
-})
+    const scene = new SceneManager();
+    const canvas = scene.initCanvas('canvas', canvasOpts);
+
+    $('.chromosome').on('click', ev => initChromosome(ev.target.id, scene, d));
+  });
+});
 
 const initChromosome = (id, scene, d) => {
-	// add border
-	// $('#' + id).hasClass('selected') ? $('#' + id).removeClass('selected').addClass('not-selected') : $('#' + id).addClass('selected').removeClass('not-selected')
-	
-	/* Reset all borders */
-	const numChromosomes = 24;
+  // add border
+  // $('#' + id).hasClass('selected') ? $('#' + id).removeClass('selected').addClass('not-selected') : $('#' + id).addClass('selected').removeClass('not-selected')
 
-	$('.chromosome').removeClass('selected').addClass('not-selected');
+  /* Reset all borders */
+  const numChromosomes = 24;
 
-	$('#' + id).addClass('selected').removeClass('not-selected');
+  $('.chromosome').removeClass('selected').addClass('not-selected');
+
+  $(`#${id}`).addClass('selected').removeClass('not-selected');
 
 
+  scene.removeAll();
 
-	scene.removeAll();
-
-	let dataKey = id.replace('chromosome', '');
-	const menuOpts = {
-		data: d[dataKey]
-	}
-	let menu = new Menu(menuOpts);
-}
+  const dataKey = id.replace('chromosome', '');
+  const menuOpts = {
+    data: d[dataKey],
+  };
+  const menu = new Menu(menuOpts);
+};
