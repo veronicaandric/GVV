@@ -7,6 +7,9 @@
       }
     ]
   ],
+  "plugins": [
+    ["inline-json-import"]
+  ],
   "env": {
     "testing": {
       "presets": [

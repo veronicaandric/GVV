@@ -5,7 +5,7 @@
   "main": "src/js/index.js",
   "scripts": {
     "setup": "sh gvvSetup.sh",
-    "start": "node server/server.js && parcel watch src/index.html",
+    "start": "sh gvvStart.sh",
     "build": "parcel build src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,6 +25,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
+    "babel-plugin-inline-json-import": "^0.3.2",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^4.3.0",
@@ -32,17 +33,33 @@
     "eslint-plugin-prettier": "^3.1.0",
     "husky": "^2.3.0",
     "lint-staged": "^8.1.7",
-    "parcel-bundler": "^1.12.3",
     "postcss-modules": "^1.4.1",
     "prettier": "1.17.1",
     "stylelint": "^10.0.1",
     "stylelint-config-prettier": "^5.2.0",
     "stylelint-prettier": "^1.1.0"
   },
-  
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.css": "stylelint",
+    "*.scss": "stylelint --syntax=scss"
+  },
   "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "parcel-bundler": "^1.12.3",
+    "classnames": "^2.2.6",
     "express": "^4.16.4",
+    "paper": "^0.12.0",
     "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
     "tuio": "^1.0.0"
   }
 }

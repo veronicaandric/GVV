@@ -1,0 +1,12 @@
+{ chromosome: {
+	gene: {
+		"length" /* gene length */: int, /* We have to decide what measurement to use - ask Gianluca */
+		"variants" /* variants present in the gene */: {
+			"type" /* variant type */: str,  /* i.e. "missense" */
+			"pathogenicity": str,
+			"definitions": {
+				def /* definition name; i.e. PM1 */: dict /* This will include the criteria that caused this definition to be flagged; at the moment we have not finalized these (they will be different for each definition) */
+			}
+		}
+	}
+}
