@@ -4,7 +4,8 @@
   "description": "Gene Variant Validation",
   "main": "src/js/index.js",
   "scripts": {
-    "start": "node server/server.js",
+    "setup": "sh gvvSetup.sh",
+    "start": "sh gvvStart.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,8 +21,11 @@
     "url": "https://github.com/veronicaandric/GVV/issues"
   },
   "homepage": "https://github.com/veronicaandric/GVV#readme",
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
+    "classnames": "^2.2.6",
     "express": "^4.16.4",
+    "paper": "^0.12.0",
     "socket.io": "^2.2.0",
     "tuio": "^1.0.0"
   }

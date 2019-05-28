@@ -6,15 +6,21 @@ __pycache__/
 # C extensions
 *.so
 
+# Editor configs
+.vscode/
+
+# Temporary working files
+*.scratch.*
+
 # Distribution / packaging
 .Python
 build/
 develop-eggs/
-# dist/
+dist/
 downloads/
 eggs/
 .eggs/
-# lib/
+lib/
 lib64/
 parts/
 sdist/

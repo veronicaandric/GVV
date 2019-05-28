@@ -1,0 +1,29 @@
+.selection-bar-wrapper {
+	max-width: 35vw;
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+}
+
+.selection-bar img {
+	width: 5vw;
+	/*paddings: 5px;*/
+	/*border: 1px solid black;*/
+	border-radius: 50px;
+	margin: 3px;
+	display: block;
+}
+
+.selected {
+	border: 2px solid red;
+}
+
+.not-selected {
+	border: 2px solid black;
+}
+
+.imgBlock {
+	display: inline-block;
+}
