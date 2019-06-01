@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # Install node modules
+rm -rf node_modules .cache
 npm install
 
 # Check if node_modules folder exists
