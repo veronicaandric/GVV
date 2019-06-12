@@ -1,6 +1,6 @@
 class SocketManager {
-  constructor() {
-    this.socket = io.connect('http://' + appHelper.getIp() + ':' + appHelper.getPort('socket') + '/table');
+  constructor(page) {
+    this.socket = io.connect('http://' + appHelper.getIp() + ':' + appHelper.getPort('socket') + '/' + page);
     this.listen();
   }
 

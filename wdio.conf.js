@@ -20,11 +20,12 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './test/specs/**/*.js'
+        './test/specs/**/*.js',
     ],
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
+        // './test/specs/unit-tests/**/*.js'
     ],
     //
     // ============
@@ -91,7 +92,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://localhost',
+    baseUrl: 'http://localhost:8080',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -125,8 +126,8 @@ exports.config = {
     // see also: https://webdriver.io/docs/dot-reporter.html
     reporters: ['spec',['allure', {
         outputDir: './test/allure-results',
-        disableWebdriverStepsReporting: true,
-        disableWebdriverScreenshotsReporting: true,
+        disableWebdriverStepsReporting: false,
+        disableWebdriverScreenshotsReporting: false,
     }]],
     
     //
@@ -166,8 +167,11 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that are to be run
      */
-    // before: function (capabilities, specs) {
-    // },
+    before: function (capabilities, specs) {
+      var chai = require('chai');
+      global.expect = chai.expect;
+      chai.Should();
+    },
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {String} commandName hook command name
@@ -204,8 +208,11 @@ exports.config = {
      * Function to be executed after a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
      * @param {Object} test test details
      */
-    // afterTest: function (test) {
-    // },
+    afterTest: function (test) {
+      if (test.error !== undefined) {
+        browser.takeScreenshot();
+      }
+    },
     /**
      * Hook that gets executed after the suite has ended
      * @param {Object} suite suite details

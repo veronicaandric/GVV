@@ -10,7 +10,7 @@ const socketServer = (app) => {
     console.log('Socket listening over web on *:3000');
   });
 
-  const tableIO = socketIO.of('/table');
+  const tableIO = socketIO.of('/pages/table');
   const wallIO = socketIO.of('/wall');
   const mobileIO = socketIO.of('/mobile');
 

@@ -1,0 +1,93 @@
+@import url('./assets/fonts/Overpass/Overpass-Regular.ttf');
+
+.header-title {
+  font-family: 'Overpass', sans-serif;
+  font-weight: 700;
+  font-size: 5rem;
+  letter-spacing: 15px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.header-subTitle {
+  font-family: 'Overpass', sans-serif;
+  font-weight: 100;
+  letter-spacing: 1px;
+  margin-bottom: 5rem;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+
+.base {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.page-link {
+  flex: 0 1 auto;
+  border: 3px solid #bdc3c7;
+  border-radius: 25px;
+  text-align: center;
+  text-decoration: none;
+  margin: 1rem;
+  background-color: rgba(236, 240, 241, 0.3);
+}
+
+.page-link:hover > #mobile-page-icon {
+  stroke: #e74c3c;
+}
+
+.page-link:hover > #table-page-icon {
+  stroke: #3498db;
+}
+
+.page-link:hover > #wall-page-icon {
+  stroke: #1abc9c;
+}
+
+.page-link > svg {
+  width: 25rem;
+  height: 25rem;
+  stroke: #000;
+  transition: stroke 1s ease;
+}
+
+.page-link > h3 {
+  color: #000;
+  font-family: 'Overpass', sans-serif;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 0;
+  padding: 1rem;
+}
+
+#mobile-page-text {
+  border-top: 3px solid #e74c3c;
+  color: #e74c3c;
+}
+
+#table-page-text {
+  border-top: 3px solid #3498db;
+  color: #3498db;
+}
+
+#wall-page-text {
+  border-top: 3px solid #1abc9c;
+  color: #1abc9c;
+}
+
+@media screen and (max-width: 900px) {
+  .page-link > svg {
+    width: 15rem;
+    height: 15rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .page-link > svg {
+    width: 10rem;
+    height: 10rem;
+  }
+}

@@ -66,8 +66,8 @@ class TuioManager {
       xpos = updateObject.getScreenY(appHelper.getWindowSize().width); 
     }
     if(appHelper.getDeviceType() === 'multi-taction'){
-        angleDegrees = updateObject.getAngleDegrees() + 180;
-        delay = 1;
+      angleDegrees = updateObject.getAngleDegrees() + 180;
+      delay = 1;
     }
 
     this.count++;

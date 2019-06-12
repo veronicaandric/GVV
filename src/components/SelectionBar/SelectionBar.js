@@ -9,7 +9,7 @@ class SelectionBar {
 
     for(let i=0; i<numChromosomes; i++) {
       let id = 'chromosome' + (i+1);
-      let img = '<img id="'+ id +'" class="chromosome not-selected" src="assets/karyotypes/chromosome' + (i+1) + '.jpg" />';
+      let img = '<img id="'+ id +'" class="chromosome not-selected" src="../assets/karyotypes/chromosome' + (i+1) + '.jpg" />';
       let span = () => {
         let name;
         if(i === 22) {

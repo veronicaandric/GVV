@@ -2,7 +2,7 @@
 const appHelper = new AppHelper();
 
 // Init socket
-const socket = new SocketManager();
+const socket = new SocketManager('pages/table');
 
 // Init Tuio
 const tuio = new TuioManager();
