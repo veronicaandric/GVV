@@ -4,13 +4,13 @@ class AppHelper {
     this.height = window.innerHeight;
     this.orientation = 'portrait';
     this.deviceType = 'laptop';
-    this.ip = '192.168.0.27';
+    this.ip = '';
     this.ports = {
       app: '8080',
       socket: '3000',
       tuio: '5000',
     };
-    this.data = $.getJSON( "../testing/Sample_Rare05_Dmg_RESULT_Copy.json");
+    this.data = $.getJSON( "./testing/Sample_Rare05_Dmg_RESULT_Copy.json");
   }
 
   getWindowSize() {
