@@ -10,7 +10,7 @@ class AppHelper {
       socket: '3000',
       tuio: '5000',
     };
-    this.data = $.getJSON( "./testing/Sample_Rare05_Dmg_RESULT_Copy.json");
+    this.data = $.getJSON( "../testData/Sample_Rare05_Dmg_RESULT_Copy.json");
   }
 
   getWindowSize() {
@@ -57,5 +57,3 @@ class AppHelper {
     } 
   }
 }
-
-module.exports = AppHelper;
