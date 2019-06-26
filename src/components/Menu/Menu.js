@@ -1,12 +1,13 @@
 class Menu {
 	constructor(data, xpos, ypos) {
-		console.log(data)
+		this.gene = data;
+		//console.log(data)
 		return this.initMenu(data, xpos, ypos);
 	}
 
 	initMenu(data, xpos, ypos) {
 		const x = xpos || view.center.x;
-		const y = ypos || view.center.y;
+		const y = ypos || 600;
 
 		if(!data){
 			return null;
@@ -15,6 +16,7 @@ class Menu {
 		let menu = new Group({ name: 'menu' });
 
 		let options = Object.keys(data); 
+		//console.log("The options are: "+options);
 		let arcAngle = 0;
 		let currFiberAngle = 0;
 		let innerRadius = 115;
@@ -124,7 +126,7 @@ class Menu {
 	styleArc(tempGroupArc, menuRef, innerRadius, pathogenicity) {
 		tempGroupArc.strokeColor = new Color(0, 0, 0, 1.0);
 		tempGroupArc.strokeWidth = 0.3;
-		tempGroupArc.fillColor = { hue: 50, saturation: 1, brightness: 0.8, alpha: 0.7 };
+		tempGroupArc.fillColor = { hue: 50, saturation: 1, brightness: 0.8, alpha: 1 };
 
 		//inner cutout for tangible
 		let cutout = new Path.Circle({ center: menuRef.position, radius: innerRadius });
@@ -154,21 +156,16 @@ class Menu {
 	}
 
 	addTouchEvents(completeArc, groupArc, user) {
-		completeArc.on({
-      mousedown: event => {
-        groupArc.fillColor.brightness = 1.0;
-      },
-      mouseup: event => {
-				var pos = user.getMenu().position;
+		completeArc.on('click',() => {
+			groupArc.fillColor.brightness = 1.0;
+			var obj = this.gene;
+			var name = completeArc.name.replace('_completeArc','');
+			var fullName = Object.keys(obj[name]); 
+			new Menu(obj[name][fullName]['defintions']);
+		})
 
-				switch(completeArc.name.replace('_completeArc', '')){
-					default:
-					break;
-				}
-        
         groupArc.fillColor.brightness = 0.8;
-      }
-    })
+
 	}
 
 	getMenuBounds(menuRef) {

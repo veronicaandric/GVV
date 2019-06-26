@@ -5,7 +5,7 @@ class SelectionBar {
 
   init() {
     const selectionBar = $('.selection-bar');
-    const numChromosomes = 24;
+    const numChromosomes = 25;
 
     for(let i=0; i<numChromosomes; i++) {
       let id = 'chromosome' + (i+1);
@@ -16,6 +16,8 @@ class SelectionBar {
           name = 'X';
         } else if(i === 23) {
           name = 'Y';
+        } else if(i == 24) {
+          name = 'mtDNA';
         } else {
           name = i + 1;
         }

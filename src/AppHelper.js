@@ -4,7 +4,7 @@ class AppHelper {
     this.height = window.innerHeight;
     this.orientation = 'portrait';
     this.deviceType = 'laptop';
-    this.ip = '';
+    this.ip = '10.0.1.43';
     this.ports = {
       app: '8080',
       socket: '3000',
@@ -51,6 +51,7 @@ class AppHelper {
 
   getData(key) {
     if(key) {
+      //console.log(this.data.responseJSON[key]);
       return this.data.responseJSON[key];
     } else {
       return this.data.responseJSON;
