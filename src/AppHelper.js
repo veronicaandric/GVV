@@ -5,6 +5,7 @@ class AppHelper {
     this.orientation = 'portrait';
     this.deviceType = 'laptop';
     this.ip = '10.0.1.43';
+    //this.ip = '192.168.0.109';
     this.ports = {
       app: '8080',
       socket: '3000',

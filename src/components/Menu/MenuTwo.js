@@ -1,4 +1,4 @@
-class Menu {
+class MenuTwo {
 	constructor(data, xpos, ypos) {
 		this.gene = data;
 		//console.log(data)
@@ -116,9 +116,8 @@ class Menu {
 		//arc text
 		let arcText = this.createArcText(args.option, args.textRef, args.textPos, args.arcAngle);
 
-		let completeArc = new Group({ name: args.option + '_completeArc', children: [groupArc, arcText] });
 
-		this.addTouchEvents(completeArc, groupArc, args.user);
+		let completeArc = new Group({ name: args.option + '_completeArc', children: [groupArc, arcText] });
 
 		return completeArc;
 	}
@@ -139,9 +138,12 @@ class Menu {
 	}
 
 	createArcText(option, textRef, textPos, arcAngle) {
+		var name = option;
+		var fullname = name.split(':');
+		var variance = fullname[3];
 		let arcText = new PointText({
 		    point: [textRef.getPointAt(textPos/2).x + 3, textRef.getPointAt(textPos/2).y - (option.split('\n').length * 6)], //center text y-pos using #lines as offset
-		    content: option,
+		    content: variance,
 		    fillColor: new Color(0, 0, 0, 1.0),
 		    fontFamily: 'Calibri',
 		    justification: 'center',
@@ -155,17 +157,6 @@ class Menu {
 		return arcText;
 	}
 
-	addTouchEvents(completeArc, groupArc, user) {
-		completeArc.on('click',() => {
-			groupArc.fillColor.brightness = 1.0;
-			var obj = this.gene;
-			var name = completeArc.name.replace('_completeArc','');
-			new MenuTwo(obj[name]);
-		})
-
-        groupArc.fillColor.brightness = 0.8;
-
-	}
 
 	getMenuBounds(menuRef) {
 		let menuBounds = new Group({
@@ -190,4 +181,6 @@ class Menu {
 		
 		return menuBounds;
 	}
+	
 }
+
