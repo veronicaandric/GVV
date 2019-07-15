@@ -1,13 +1,23 @@
 class MenuTwo {
 	constructor(data, xpos, ypos) {
 		this.gene = data;
-		//console.log(data)
+		//console.log(data);
 		return this.initMenu(data, xpos, ypos);
 	}
 
 	initMenu(data, xpos, ypos) {
 		const x = xpos || view.center.x;
 		const y = ypos || 600;
+
+		var outerCircle = new Path.Circle(new Point(x, y), 205);
+		outerCircle.fillColor = { hue: 50, saturation: 1, brightness: 0.8, alpha: 1 };
+		outerCircle.strokeColor = 'black';
+		outerCircle.strokeWidth = 0.3;
+
+		var innerCircle = new Path.Circle(new Point(x, y), 115);
+		innerCircle.fillColor = 'white';
+		innerCircle.strokeColor = 'black';
+		innerCircle.strokeWidth = 0.3;
 
 		if(!data){
 			return null;
@@ -16,170 +26,108 @@ class MenuTwo {
 		let menu = new Group({ name: 'menu' });
 
 		let options = Object.keys(data); 
-		//console.log("The options are: "+options);
-		let arcAngle = 0;
-		let currFiberAngle = 0;
-		let innerRadius = 115;
+		console.log("The options are: "+options);
+		//let innerRadius = 115;
 
 		options.forEach( (option, i) => {
-
-			//reference circle for drawing menu
-			let menuRef = new Path.Circle({ center: [x, y], radius: (innerRadius + 90)/*175*/, name: 'menuRef' });
-			menuRef.remove();
-
-			//reference circle for drawing arc names
-			let textRef = new Path.Circle({ center: [x, y], radius: (innerRadius + 45)/*130*/, name: 'textRef' });
-			textRef.strokeWidth = 3;
-			textRef.strokeColor = new Color(0, 0, 0, 1.0);;
-			menu.addChild( textRef );
-			textRef.remove();
-
-			//draw menu bounds
-			if( !menu.children['menuBounds'] ) {
-				menu.addChild( this.getMenuBounds(menuRef) );
-			}
-
-			//get arc length and arc text position
-			let arcParameters = this.getArcParameters({
-				menuRef_length: menuRef.length,
-				textRef_length: textRef.length,
-				numArcs: options.length,
-				option: option,
-				arcType: ''
-			})
-
-			//create experimental group arc
-			menu.addChild( this.createArc({
-					option: option, 
-					menuRef: menuRef, 
-					textRef: textRef, 
-					numArcs: options.length, 
-					arcLength: arcParameters.arcLength, 
-					arcAngle: arcAngle, 
-					textPos: arcParameters.textPos, 
-					innerRadius: innerRadius, 
-					pathogenicity: data[option]['pathogenicity'],
-					arcType: ''
-				})
-			)
-
-			// get arc rotation angle for next arc
-			arcAngle = this.getArcAngle(option, arcAngle, '', options.length);
+			var variantCircle = new Path.Circle(new Point(x+205, y+10), 10);
+			variantCircle.fillColor = 'green';
+			//this.createArc({option: option});
+			this.addTouchEvents(variantCircle);
 		})
 
 		return menu;
 	}
 
-	getArcParameters(args) {
-		let arcLength = 0;
-		let textPos = 0;
-
-		if(args.numArcs > 1) {
-			arcLength = args.menuRef_length/args.numArcs;
-			textPos = args.textRef_length/args.numArcs;
-		}
-		else {
-			textPos = args.textRef_length;
-		}
-
-		return { arcLength: arcLength, textPos: textPos };
-	}
-
-	getArcAngle(option, arcAngle, arcType, numArcs) {
-		let angle = 0;
-
-		angle = arcAngle + (360/numArcs);
-
-		return angle;
-	}
-
-	createArc(args) {
-		//init arc
-		var tempGroupArc = new Path();
-		tempGroupArc.moveTo(args.menuRef.position);
-		tempGroupArc.lineTo(args.menuRef.getPointAt(0));
-
-		if( args.numArcs > 1 ){
-			tempGroupArc.arcTo( args.menuRef.getPointAt(args.arcLength/2), args.menuRef.getPointAt(args.arcLength) );
-			tempGroupArc.closePath();
-			tempGroupArc.rotate( args.arcAngle, args.menuRef.position );	
-		}
-		else{
-			tempGroupArc.arcTo(args.menuRef.getPointAt( args.menuRef.length / 2 ), args.menuRef.getPointAt( args.menuRef.length - 0.1 ));
-			tempGroupArc.closePath()
+	addTouchEvents(completeArc) {
+			//var popupPoint = new Point(650,600);
+			//var popupText = new PointText(popupPoint);
+            //popupText.fillColor = 'red';
+            //popupText.fontSize= 20;
+            //popupText.visible = false;
+            var obj = this.gene;
+            console.log(this.gene);
+            //var name = completeArc.name.replace('_completeArc','');
+            //var definition = obj[name]['definitions'];
+            //popupText.content = "hello";
+/*
+		completeArc.onMouseEnter = function(event) {
+			completeArc.fillColor.brightness = 1.0;
+			popupText.visible = true;
 		}
 
-		//style arc
-		let groupArc = this.styleArc( tempGroupArc, args.menuRef, args.innerRadius, args.pathogenicity );
-		groupArc.name = args.option + '_arc';
+		completeArc.onMouseLeave = function(event) {
+			completeArc.fillColor.brightness = 0.8;
+			popupText.visible = false;
+		}
 
-		//arc text
-		let arcText = this.createArcText(args.option, args.textRef, args.textPos, args.arcAngle);
+		*/
 
+		var count = 0;
+		var path;
+		var popupPoint;
+		var popupText;
+		var mypath;
+		var canvas = document.getElementById("canvas");
+			path = new Path();
+			path.strokeColor = '#00000';
+			popupPoint = new Point(700,600);
+			popupText = new PointText(popupPoint);
+			popupText.fillColor = 'red';
+			popupText.fontSize= 20;
+			popupText.content = "Hello";
+			mypath = new Path();
+			mypath.strokeColor = 'black';
+			mypath.add(new Point(700, 650)); 
+			mypath.add(new Point(700, 550)); 
+			mypath.add(new Point(750, 550));
+			mypath.add(new Point(750, 650));
+			mypath.closed = true;
+			popupText.visible = false;
+			mypath.visible = false;
+			path.visible = false;
 
-		let completeArc = new Group({ name: args.option + '_completeArc', children: [groupArc, arcText] });
-
-		return completeArc;
-	}
-
-	styleArc(tempGroupArc, menuRef, innerRadius, pathogenicity) {
-		tempGroupArc.strokeColor = new Color(0, 0, 0, 1.0);
-		tempGroupArc.strokeWidth = 0.3;
-		tempGroupArc.fillColor = { hue: 50, saturation: 1, brightness: 0.8, alpha: 1 };
-
-		//inner cutout for tangible
-		let cutout = new Path.Circle({ center: menuRef.position, radius: innerRadius });
-		let groupArc = tempGroupArc.subtract( cutout );
-
-		tempGroupArc.remove();
-		cutout.remove();
-
-		return groupArc;
-	}
-
-	createArcText(option, textRef, textPos, arcAngle) {
-		var name = option;
-		var fullname = name.split(':');
-		var variance = fullname[3];
-		let arcText = new PointText({
-		    point: [textRef.getPointAt(textPos/2).x + 3, textRef.getPointAt(textPos/2).y - (option.split('\n').length * 6)], //center text y-pos using #lines as offset
-		    content: variance,
-		    fillColor: new Color(0, 0, 0, 1.0),
-		    fontFamily: 'Calibri',
-		    justification: 'center',
-		    fontSize: '1em',
-		    fontWeight: 'bold',
-		    name: 'arcText',
-		    rotation: 270 + (((textPos/2)/textRef.length)*360)
-		});
-		arcText.rotate( arcAngle, textRef.position );
-
-		return arcText;
-	}
-
-
-	getMenuBounds(menuRef) {
-		let menuBounds = new Group({
-			name: 'menuBounds',
-			children: [
-				new Path.Line({
-				  	from: [ menuRef.position.x, menuRef.position.y - 450 ],
-				   	to: [ menuRef.position.x, menuRef.position.y + 450 ],
-				   	strokeColor: new Color(0, 0, 0, 0),
-				   	strokeWidth: 1,
-				   	name: 'verticalBounds'
-				}),
-				new Path.Line({
-				  	from: [ menuRef.position.x - 450, menuRef.position.y ],
-				   	to: [ menuRef.position.x + 450, menuRef.position.y ],
-				   	strokeColor: new Color(0, 0, 0, 0),
-				   	strokeWidth: 1,
-				   	name: 'horizontalBounds'
-				})
-			]
-		});
 		
-		return menuBounds;
+		completeArc.onClick = function(event){
+			completeArc.fillColor.brightness = 1.0;
+			popupText.visible = true;
+			mypath.visible = true;
+			path.visible = true;
+			
+		}
+
+		/*canvas.onMouseDown = function(event) {
+			// Create a new path and select it:
+			//path = new Path();
+			//path.strokeColor = '#00000';
+			console.log("Create segment");
+			path.removeSegment(count);
+			// Add a segment to the path where
+			// you clicked:
+			path.add(800,900);
+			count++;
+		}*/
+
+		mypath.onMouseDrag = function(event) {
+			// Every drag event, add a segment
+			// to the path at the position of the mouse:
+			//path.add(event.point);
+			mypath.position = event.point;
+			popupText.position = event.point;
+			path.removeSegment(count);
+			path.add(656,610);
+			path.add(event.point.x - 25, event.point.y);
+			count++;
+		}
+
+		/*canvas.onMouseUp = function(event) {
+			// Every drag event, add a segment
+			// to the path at the position of the mouse:
+			path.add(event.point.x - 30, event.point.y);
+			//mypath.position = event.point;
+		}*/
+
+
 	}
 	
 }
