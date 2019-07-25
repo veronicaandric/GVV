@@ -28,6 +28,37 @@ class MenuTwo {
 		let options = Object.keys(data); 
 		console.log("The options are: "+options);
 		//let innerRadius = 115;
+		/*
+		var obj = this.gene;
+		var name = completeArc.name.replace('_completeArc','');
+		var pathogenicity = obj[name]['pathogenicity'];
+
+		switch(pathogenicity) {
+        
+			case "benign":
+				x = 'green';
+				break;
+						
+			case "likely benign":
+				x = '#90EE90';
+				break;
+						
+			case "likely pathogenic":
+				x = 'red';
+				break;
+						
+			case "pathogenic":
+				x = '#8B0000';
+				break;
+						
+			case "vus":
+				x = 'yellow';
+				break;
+				
+			default:
+				 x = 'black'
+				break;      
+		}*/
 
 		options.forEach( (option, i) => {
 			var variantCircle = new Path.Circle(new Point(x+205, y+10), 10);
