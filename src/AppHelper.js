@@ -4,13 +4,15 @@ class AppHelper {
     this.height = window.innerHeight;
     this.orientation = 'portrait';
     this.deviceType = 'laptop';
-    this.ip = '';
+    //this.ip = '192.168.0.108';
+    this.ip = '10.0.1.43';
     this.ports = {
       app: '8080',
       socket: '3000',
       tuio: '5000',
     };
     this.data = $.getJSON( "../testData/Sample_Rare05_Dmg_RESULT_Copy.json");
+    this.lengths = $.getJSON( "../testData/Sample_lengths.json");
   }
 
   getWindowSize() {
@@ -47,6 +49,14 @@ class AppHelper {
         console.error('@AppHelper.getPort(type): port type needs to be specified.');
         break;
     }
+  }
+
+  getLen(key) {
+    if(key) {
+      return this.lengths.responseJSON[key];
+    } else {
+      return this.lengths.responseJSON;
+    } 
   }
 
   getData(key) {

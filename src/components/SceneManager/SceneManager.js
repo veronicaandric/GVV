@@ -17,6 +17,9 @@ class SceneManager {
 			canvas.height = height;
 
 			const paperCanvas = new Project(canvasID);
+			
+			//const tool = new Tool();
+        	//tool.fixedDistance = 0;
 			return paperCanvas;
 		} else {
 			console.error('@SceneManager.initCanvas(canvasID, windowSize): Canvas height and width have not been defined correctly.');

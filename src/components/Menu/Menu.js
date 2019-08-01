@@ -1,161 +1,452 @@
 class Menu {
-	constructor(data, xpos, ypos) {
+	constructor(data, length, xpos, ypos) {
 		this.gene = data;
 		//console.log(data)
-		return this.initMenu(data, xpos, ypos);
+		return this.initMenu(data, length, xpos, ypos);
 	}
 
-	initMenu(data, xpos, ypos) {
+
+	initMenu(data, length, xpos, ypos) {
 		const x = xpos || view.center.x;
 		const y = ypos || 600;
+		//1250 for the table top
 
+		var angles = [];
+		var segLen = [];
+		var totalLen;
+		var count = 0;
+		var innerRadius = 115;
+		var outerRadius = 205;
+
+		var g = new PointText({
+		    point: [500, 515],
+		    content: 'G',
+		    fillColor: 'black',
+		    fontFamily: 'Courier New',
+		    fontWeight: 'bold',
+			rotation: 90,
+		    fontSize: 25
+		});
+
+		var e = new PointText({
+		    point: [500, 530],
+		    content: 'e',
+		    fillColor: 'black',
+		    fontFamily: 'Courier New',
+		    fontWeight: 'bold',
+			rotation: 90,
+		    fontSize: 25
+		});
+
+		var n = new PointText({
+		    point: [500, 545],
+		    content: 'n',
+		    fillColor: 'black',
+		    fontFamily: 'Courier New',
+		    fontWeight: 'bold',
+			rotation: 90,
+		    fontSize: 25
+		});	
+
+		var e2 = new PointText({
+		    point: [500, 560],
+		    content: 'e',
+		    fillColor: 'black',
+		    fontFamily: 'Courier New',
+		    fontWeight: 'bold',
+			rotation: 90,
+		    fontSize: 25
+		});	
+
+		var group = new Group();
+		group.addChild(g);
+		group.addChild(e);
+		group.addChild(n);
+		group.addChild(e2);
+		group.position = [660,600];
+		group.visible = false;
+		group.pivot = (x,y);
+		group.pivot.x = x;
+		group.pivot.y = y;
+
+		var outerCircle = new Path.Circle(new Point(x, y), outerRadius);
+		outerCircle.fillColor = { hue: 50, saturation: 1, brightness: 0.8, alpha: 1 };
+		outerCircle.strokeColor = 'black';
+		outerCircle.strokeWidth = 0.3;
+		//outerCircle.visible = false;
+
+		var innerCircle = new Path.Circle(new Point(x, y), innerRadius);
+		innerCircle.fillColor = 'white';
+		innerCircle.strokeColor = 'black';
+		innerCircle.strokeWidth = 0.3;
+
+		/*
+		var pointOnInCir = x,y+{
+		    length: innerRadius,
+		    angle: 0
+		};
+
+		console.log("Point on circle is"+pointOnInCir);
+
+		var pointOnOutCir = view.center+{
+		    length: outerRadius,
+		    angle: 0
+		};
+
+		console.log("Point on circle is"+pointOnOutCir);
+		*/
+		
 		if(!data){
 			return null;
 		}
 
-		let menu = new Group({ name: 'menu' });
+		if(!length){
+			return null;
+		}
+
+		let geneLen = Object.keys(length);
+
+		//console.log(geneLen);
+
+		geneLen.forEach( (geneName, i) => {
+			//totalLen = totalLen + length[geneName]['length'][i];
+			//console.log(totalLen);
+			//totalLen.push(length[geneName]['length']);
+			//Array.prototype.push.apply(segLen, length[geneName]['length']);
+			//totalLen.push.apply(segLen, length[geneName]['length']);
+			//console.log(segLen);
+			var i;
+			var temp = length[geneName]['length'];
+			var value = 0;
+			for(i = 0; i < temp.length; i++){
+				value = value + temp[i];
+			}
+			//totalLen.push.apply(segLen, value);
+			segLen[count] = value;
+			//console.log(segLen[count]);
+			count++;
+
+		})
+
+		totalLen = this.totLen(segLen);
+		angles = this.calAngles(segLen, totalLen);
+		//console.log(angles);
+		var newgroup = this.createLines(angles, x, y, innerRadius, outerRadius);
+		//console.log(newgroup);
 
 		let options = Object.keys(data); 
 		//console.log("The options are: "+options);
-		let arcAngle = 0;
-		let currFiberAngle = 0;
-		let innerRadius = 115;
+		//let arcAngle = 0;
+		//let currFiberAngle = 0;
+		//let innerRadius = 115;
 
 		options.forEach( (option, i) => {
+			//console.log("The option is "+option);
+			//console.log("The gene num is "+i);
+			//console.log(option);
+			//console.log(data[option]);
+			this.rotateLines(i, newgroup.group1, newgroup.array1, group, data[option]);
 
-			//reference circle for drawing menu
-			let menuRef = new Path.Circle({ center: [x, y], radius: (innerRadius + 90)/*175*/, name: 'menuRef' });
-			menuRef.remove();
-
-			//reference circle for drawing arc names
-			let textRef = new Path.Circle({ center: [x, y], radius: (innerRadius + 45)/*130*/, name: 'textRef' });
-			textRef.strokeWidth = 3;
-			textRef.strokeColor = new Color(0, 0, 0, 1.0);;
-			menu.addChild( textRef );
-			textRef.remove();
-
-			//draw menu bounds
-			if( !menu.children['menuBounds'] ) {
-				menu.addChild( this.getMenuBounds(menuRef) );
-			}
-
-			//get arc length and arc text position
-			let arcParameters = this.getArcParameters({
-				menuRef_length: menuRef.length,
-				textRef_length: textRef.length,
-				numArcs: options.length,
-				option: option,
-				arcType: ''
-			})
-
-			//create experimental group arc
-			menu.addChild( this.createArc({
-					option: option, 
-					menuRef: menuRef, 
-					textRef: textRef, 
-					numArcs: options.length, 
-					arcLength: arcParameters.arcLength, 
-					arcAngle: arcAngle, 
-					textPos: arcParameters.textPos, 
-					innerRadius: innerRadius, 
-					pathogenicity: data[option]['pathogenicity'],
-					arcType: ''
-				})
-			)
-
-			// get arc rotation angle for next arc
-			arcAngle = this.getArcAngle(option, arcAngle, '', options.length);
 		})
 
-		return menu;
+		//this.geneText();
 	}
 
-	getArcParameters(args) {
-		let arcLength = 0;
-		let textPos = 0;
+/*
+	geneText(){
+		var g = new PointText({
+		    point: [500, 515],
+		    content: 'G',
+		    fillColor: 'black',
+		    fontFamily: 'Courier New',
+		    fontWeight: 'bold',
+			rotation: 90,
+		    fontSize: 25
+		});
 
-		if(args.numArcs > 1) {
-			arcLength = args.menuRef_length/args.numArcs;
-			textPos = args.textRef_length/args.numArcs;
-		}
-		else {
-			textPos = args.textRef_length;
-		}
+		var e = new PointText({
+		    point: [500, 530],
+		    content: 'e',
+		    fillColor: 'black',
+		    fontFamily: 'Courier New',
+		    fontWeight: 'bold',
+			rotation: 90,
+		    fontSize: 25
+		});
 
-		return { arcLength: arcLength, textPos: textPos };
+		var n = new PointText({
+		    point: [500, 545],
+		    content: 'n',
+		    fillColor: 'black',
+		    fontFamily: 'Courier New',
+		    fontWeight: 'bold',
+			rotation: 90,
+		    fontSize: 25
+		});	
+
+		var e2 = new PointText({
+		    point: [500, 560],
+		    content: 'e',
+		    fillColor: 'black',
+		    fontFamily: 'Courier New',
+		    fontWeight: 'bold',
+			rotation: 90,
+		    fontSize: 25
+		});	
+
+		var group = new Group();
+		group.addChild(g);
+		group.addChild(e);
+		group.addChild(n);
+		group.addChild(e2);
+		group.position = [660,600];
+	}
+	*/
+
+	totLen(len) {
+		var i;
+		var length = 0;
+		for(i = 0; i < len.length; i++){
+			length = length + len[i];
+		}
+		//console.log(length);
+		return length;
 	}
 
-	getArcAngle(option, arcAngle, arcType, numArcs) {
-		let angle = 0;
-
-		angle = arcAngle + (360/numArcs);
-
+	calAngles(len, total){
+		var i;
+		var angle = [];
+		for(i = 0; i < len.length; i++){
+			angle[i] = (len[i]/total)*360;
+			//console.log(angle[i]);
+		}
 		return angle;
 	}
 
-	createArc(args) {
-		//init arc
-		var tempGroupArc = new Path();
-		tempGroupArc.moveTo(args.menuRef.position);
-		tempGroupArc.lineTo(args.menuRef.getPointAt(0));
+	createLines(angle, pivotx, pivoty, pointIn, pointOut){
+		var i;
+		var angleRef = [];
+		var totalAngle = 0;
+		var from = new Point(pivotx+pointIn, pivoty);
+		var to = new Point(pivotx+pointOut, pivoty);
+		var group = new Group([new Path.Line(from, to)]);
+		group.children[0].pivot = (pivotx,pivoty);
+		group.children[0].pivot.x = pivotx;
+		group.children[0].pivot.y = pivoty;
+		group.strokeColor = 'black';
+		angleRef[0] = 0;
 
-		if( args.numArcs > 1 ){
-			tempGroupArc.arcTo( args.menuRef.getPointAt(args.arcLength/2), args.menuRef.getPointAt(args.arcLength) );
-			tempGroupArc.closePath();
-			tempGroupArc.rotate( args.arcAngle, args.menuRef.position );	
+		//console.log("Line created");
+
+		for(i = 1; i < angle.length; i++){
+			totalAngle = totalAngle + angle[i];
+			angleRef[i] = totalAngle;
+			group.addChild(new Path.Line(from, to));
+			//console.log(group);
+			group.strokeColor = 'black';
+			group.children[i].pivot = (pivotx,pivoty);
+			group.children[i].pivot.x = pivotx;
+			group.children[i].pivot.y = pivoty;
+			group.children[i].rotate(angleRef[i]);
+			
 		}
-		else{
-			tempGroupArc.arcTo(args.menuRef.getPointAt( args.menuRef.length / 2 ), args.menuRef.getPointAt( args.menuRef.length - 0.1 ));
-			tempGroupArc.closePath()
+
+		//return (group, angleRef);
+		return {group1: group, array1: angleRef};
+	}
+
+	rotateLines(num, group, angleRef, group2, nextLayer){
+		var i;
+		var count = 1;
+		var angleOne = angleRef[num];
+		var angleTwo;
+		var angleRot = [];
+		var division = 20/(angleRef.length - 1);
+		var counter = 0;
+		var value;
+		var menuTwo;
+		//console.log(group.children[num]);
+		//console.log(num);
+		group.children[num].onClick = function(event) {
+			//console.log(this);
+    		//this.fillColor = 'red';
+    		for(i = num+1; i < angleRef.length; i++){
+    			angleTwo = angleOne + (division*count);
+    			if(angleRef[i] > angleTwo){
+    				//console.log("The reference angle is "+angleRef[i]);
+    				angleRot[count-1] = (-1)*(angleRef[i] - angleTwo);
+    				//value = (-1)*(360/angleRot[count-1]);
+    				//group.children[i].rotate(angleRot[count-1]);
+    				value = angleRot[count-1]/10;
+    				myAnimation(group.children[i], value);
+    				
+    				/*
+	    			paper.view.attach('frame', firstAnimation);
+						//startFirstAnimation(this);
+					function firstAnimation(event)
+					{
+						if(counter <= 36)
+						{
+						    console.log(counter);
+							counter++;
+							group.children[i].rotate(angleRot[count-1]);
+							//firstLabel.content = 'First animation count: ' + event.count;
+						}
+						else
+						{	counter = 0;
+							paper.view.detach('frame', firstAnimation);
+							console.log("first animation finished");
+						}
+					}*/
+    				console.log(angleRot[count-1]);
+    			}
+    			else{
+    				angleRot[count-1] = (-1)*(angleRef[i] + (360 - angleTwo));
+    				console.log(angleRot[count-1]);
+    				//value = (-1)*(360/angleRot[count-1]);
+    				value = angleRot[count-1]/10;
+    				myAnimation(group.children[i], value);
+    				//group.children[i].rotate(angleRot[count-1]);
+    			}
+    			count++;
+
+			}
+
+			for(i = 0; i < num; i++){
+    			angleTwo = angleOne + (division*count);
+    			//console.log(angleTwo);
+    			if(angleRef[i] > angleTwo){
+    				angleRot[count-1] = (-1)*(angleRef[i] - angleTwo);
+    				//group.children[i].rotate(angleRot[count-1]);
+    				//value = (-1)*(360/angleRot[count-1]);
+    				value = angleRot[count-1]/10;
+    				myAnimation(group.children[i], value);
+    				console.log(angleRot[count-1]);
+    			}
+    			else{
+    				angleRot[count-1] = (-1)*(angleRef[i] + (360 - angleTwo));
+    				console.log(angleRot[count-1]);
+    				//value = (-1)*(360/angleRot[count-1]);
+    				value = angleRot[count-1]/10;
+    				myAnimation(group.children[i], value);
+    				//group.children[i].rotate(angleRot[count-1]);
+    			}
+    			count++;
+
+			}
+
+			group2.rotate(angleOne + 10);
+			group2.visible = true;
+			menuTwo = new MenuTwo(nextLayer);
+			//call menutwo
 		}
 
-		//style arc
-		let groupArc = this.styleArc( tempGroupArc, args.menuRef, args.innerRadius, args.pathogenicity );
-		groupArc.name = args.option + '_arc';
+		group2.onClick = function(event) {
+			console.log(menuTwo);
+			group2.visible = false;
+			count = 1;
+			console.log(angleRot);
+			//console.log(this);
+    		//this.fillColor = 'red';
+    		for(i = 0; i < num; i++){
+    			angleTwo = angleOne + (division*count);
+    			//console.log(angleTwo);
+    			if(angleRef[i] > angleTwo){
+    				//angleRot[count-1] = (-1)*(angleRef[i] - angleTwo);
+    				//group.children[i].rotate(angleRot[count-1]);
+    				//value = (-1)*(360/angleRot[count-1]);
+    				value = (-1)*(angleRot[count-1]/10)
+    				myAnimation(group.children[i], value);
+    				console.log(angleRot[count-1]);
+    			}
+    			else{
+    				//angleRot[count-1] = (-1)*(angleRef[i] + (360 - angleTwo));
+    				console.log(angleRot[count-1]);
+    				//value = (-1)*(360/angleRot[count-1]);
+    				value = (-1)*(angleRot[count-1]/10)
+    				myAnimation(group.children[i], value);
+    				//group.children[i].rotate(angleRot[count-1]);
+    			}
+    			count++;
 
-		//arc text
-		let arcText = this.createArcText(args.option, args.textRef, args.textPos, args.arcAngle);
+			}
 
-		let completeArc = new Group({ name: args.option + '_completeArc', children: [groupArc, arcText] });
+    		for(i = num+1; i < angleRef.length; i++){
+    			angleTwo = angleOne + (division*count);
+    			if(angleRef[i] > angleTwo){
+    				//console.log("The reference angle is "+angleRef[i]);
+    				//angleRot[count-1] = (-1)*(angleRef[i] - angleTwo);
+    				//value = (-1)*(360/angleRot[count-1]);
+    				//group.children[i].rotate(angleRot[count-1]);
+    				value = (-1)*(angleRot[count-1]/10);
+    				myAnimation(group.children[i], value);
+    				
+    				/*
+	    			paper.view.attach('frame', firstAnimation);
+						//startFirstAnimation(this);
+					function firstAnimation(event)
+					{
+						if(counter <= 36)
+						{
+						    console.log(counter);
+							counter++;
+							group.children[i].rotate(angleRot[count-1]);
+							//firstLabel.content = 'First animation count: ' + event.count;
+						}
+						else
+						{	counter = 0;
+							paper.view.detach('frame', firstAnimation);
+							console.log("first animation finished");
+						}
+					}*/
+    				console.log(angleRot[count-1]);
+    			}
+    			else{
+    				//angleRot[count-1] = (-1)*(angleRef[i] + (360 - angleTwo));
+    				console.log(angleRot[count-1]);
+    				//value = (-1)*(360/angleRot[count-1]);
+    				value = (-1)*(angleRot[count-1]/10)
+    				myAnimation(group.children[i], value);
+    				//group.children[i].rotate(angleRot[count-1]);
+    			}
+    			count++;
 
-		this.addTouchEvents(completeArc, groupArc, args.user);
+			}
 
-		return completeArc;
+		}
+
+		function myAnimation(obj, rot) {
+			var counter = 0;
+			paper.view.attach('frame', firstAnimation);
+			console.log("first animation start");
+		
+		function firstAnimation(event)
+		{
+			//to control speed
+			//if (event.count % 10 === 0) {
+			if(counter <= 9)
+			{
+			    console.log("first animation running");
+				counter++;
+				obj.rotate(rot);
+				//firstLabel.content = 'First animation count: ' + event.count;
+			}
+			else
+			{
+				counter = 0;
+				paper.view.detach('frame', firstAnimation);
+				console.log("first animation finished");
+			}
+		//}
+		}
+
+		}
+
 	}
-
-	styleArc(tempGroupArc, menuRef, innerRadius, pathogenicity) {
-		tempGroupArc.strokeColor = new Color(0, 0, 0, 1.0);
-		tempGroupArc.strokeWidth = 0.3;
-		tempGroupArc.fillColor = { hue: 50, saturation: 1, brightness: 0.8, alpha: 1 };
-
-		//inner cutout for tangible
-		let cutout = new Path.Circle({ center: menuRef.position, radius: innerRadius });
-		let groupArc = tempGroupArc.subtract( cutout );
-
-		tempGroupArc.remove();
-		cutout.remove();
-
-		return groupArc;
-	}
-
-	createArcText(option, textRef, textPos, arcAngle) {
-		let arcText = new PointText({
-		    point: [textRef.getPointAt(textPos/2).x + 3, textRef.getPointAt(textPos/2).y - (option.split('\n').length * 6)], //center text y-pos using #lines as offset
-		    content: option,
-		    fillColor: new Color(0, 0, 0, 1.0),
-		    fontFamily: 'Calibri',
-		    justification: 'center',
-		    fontSize: '1em',
-		    fontWeight: 'bold',
-		    name: 'arcText',
-		    rotation: 270 + (((textPos/2)/textRef.length)*360)
-		});
-		arcText.rotate( arcAngle, textRef.position );
-
-		return arcText;
-	}
+	
 
 	addTouchEvents(completeArc, groupArc, user) {
+		/*
 		completeArc.on('click',() => {
 			groupArc.fillColor.brightness = 1.0;
 			var obj = this.gene;
@@ -164,30 +455,7 @@ class Menu {
 		})
 
         groupArc.fillColor.brightness = 0.8;
+        */
 
-	}
-
-	getMenuBounds(menuRef) {
-		let menuBounds = new Group({
-			name: 'menuBounds',
-			children: [
-				new Path.Line({
-				  	from: [ menuRef.position.x, menuRef.position.y - 450 ],
-				   	to: [ menuRef.position.x, menuRef.position.y + 450 ],
-				   	strokeColor: new Color(0, 0, 0, 0),
-				   	strokeWidth: 1,
-				   	name: 'verticalBounds'
-				}),
-				new Path.Line({
-				  	from: [ menuRef.position.x - 450, menuRef.position.y ],
-				   	to: [ menuRef.position.x + 450, menuRef.position.y ],
-				   	strokeColor: new Color(0, 0, 0, 0),
-				   	strokeWidth: 1,
-				   	name: 'horizontalBounds'
-				})
-			]
-		});
-		
-		return menuBounds;
 	}
 }

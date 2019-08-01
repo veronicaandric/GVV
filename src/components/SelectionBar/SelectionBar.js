@@ -27,7 +27,7 @@ class SelectionBar {
       selectionBar.append(div);
 
       $('#'+id).on('click', () => {
-        new Menu(appHelper.getData(i+1))
+        new Menu(appHelper.getData(i+1), appHelper.getLen(i+1));
       })
     }
   }

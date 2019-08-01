@@ -8,6 +8,14 @@
 					"PP3" : { "db": ["informatics"], "thresholds": {"threshold1": 0.45}},
 					"BA1" : { "db": ["informatics", "UCSC"], "thresholds": {"threshold1": 0.54}}
 				}
+			},
+			"FAM20C:NM_020223:exon4:c.951_952insGACAGGTGAGCCCTTCCTTCCTCCCTCCATCCGC:p.L317_D318delinsLDRX": {
+				"pathogenicity": "benign", 
+				"definitions": {
+					"PM2" : { "db": ["informatics"], "thresholds": {"threshold1": 0.47}},
+					"PP3" : { "db": ["informatics", "UCSC"], "thresholds": {"threshold1": 0.43}},
+					"BA1" : { "db": ["informatics"], "thresholds": {"threshold1": 0.84}}
+				}
 			}
 		},
 		"KCNN3": {
