@@ -19,7 +19,7 @@ class SelectionBar {
         } else {
           name = i + 1;
         }
-        return '<span class="imgName">' + name + '</span>';
+        return '<span style="color:white; class="imgName">' + name + '</span>';
       }
       let div = '<div class="imgBlock">' + img + span() + '</div>';
       selectionBar.append(div);
