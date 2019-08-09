@@ -21,9 +21,13 @@
 }
 
 .not-selected {
-	border: 2px solid black;
+	border: 2px solid white;
 }
 
 .imgBlock {
 	display: inline-block;
 }
+
+body {
+	background-color: black;
+  }
