@@ -4,17 +4,17 @@
 			"RERE:NM_012102:exon19:c.C2381T:p.P794L": {
 				"pathogenicity": "benign", 
 				"definitions": {
-					"PM2" : { "db": ["informatics", "UCSC"], "thresholds": {"threshold1": 0.4}},
-					"PP3" : { "db": ["informatics"], "thresholds": {"threshold1": 0.45}},
-					"BA1" : { "db": ["informatics", "UCSC"], "thresholds": {"threshold1": 0.54}}
+					"PM2" : { "db": {"name": ["UCSC","informatics"], "in_use": ["true","false"]}, "threshold": {"value": 0.68, "type": "type"}},
+					"PP3" : { "db": {"name": ["UCSC"], "in_use": ["false"]}, "threshold": {"value": 0.64, "type": "type"}},
+					"BA1" : { "db": {"name": ["informatics","UCSC"], "in_use": ["true","true"]}, "threshold": {"value": 0.26, "type": "type"}}
 				}
 			},
 			"FAM20C:NM_020223:exon4:c.951_952insGACAGGTGAGCCCTTCCTTCCTCCCTCCATCCGC:p.L317_D318delinsLDRX": {
 				"pathogenicity": "benign", 
 				"definitions": {
-					"PM2" : { "db": ["informatics"], "thresholds": {"threshold1": 0.47}},
-					"PP3" : { "db": ["informatics", "UCSC"], "thresholds": {"threshold1": 0.43}},
-					"BA1" : { "db": ["informatics"], "thresholds": {"threshold1": 0.84}}
+					"PM2" : { "db": {"name": ["UCSC"], "in_use": ["false"]}, "threshold": {"value": 0.35, "type": "type"}},
+					"BP4" : { "db": {"name": ["informatics"], "in_use": ["true"]}, "threshold": {"value": 0.77, "type": "type"}},
+					"BA1" : { "db": {"name": ["UCSC"], "in_use": ["true"]}, "threshold": {"value": 0.37, "type": "type"}}
 				}
 			}
 		},
@@ -22,11 +22,11 @@
 			"KCNN3:NM_001204087:exon1:c.241_242insAGCAGCAGCAGC:p.P81delinsQQQQP": {
 				"pathogenicity": "benign", 
 				"definitions": {
-					"PM2" : { "db": ["UCSC", "informatics"], "thresholds": {"threshold1": 0.64}},
-					"PM4" : { "db": ["informatics"], "thresholds": {"threshold1": 0.35}},
-					"PP3" : { "db": ["informatics", "UCSC"], "thresholds": {"threshold1": 0.77}},
-					"BA1" : { "db": ["informatics"], "thresholds": {"threshold1": 0.37}},
-					"BP4" : { "db": ["UCSC"], "thresholds": {"threshold1": 0.14}}
+					"PM2" : { "db": {"name": ["UCSC","informatics"], "in_use": ["true","false"]}, "threshold": {"value": 0.47, "type": "type"}},
+					"PM4" : { "db": {"name": ["UCSC"], "in_use": ["true"]}, "threshold": {"value": 0.43, "type": "type"}},
+					"PP3" : { "db": {"name": ["informatics"], "in_use": ["true"]}, "threshold": {"value": 0.84, "type": "type"}},
+					"BA1" : { "db": {"name": ["UCSC"], "in_use": ["true"]}, "threshold": {"value": 0.37, "type": "type"}},
+					"BP4" : { "db": {"name": ["informatics","UCSC"], "in_use": ["true","false"]}, "threshold": {"value": 0.42, "type": "type"}}
 				}
 			}
 		}
@@ -36,9 +36,9 @@
 			"FAM20C:NM_020223:exon4:c.951_952insGACAGGTGAGCCCTTCCTTCCTCCCTCCATCCGC:p.L317_D318delinsLDRX": {
 				"pathogenicity": "benign", 
 				"definitions": {
-					"PM2" : { "db": ["informatics"], "thresholds": {"threshold1": 0.47}},
-					"PP3" : { "db": ["informatics", "UCSC"], "thresholds": {"threshold1": 0.43}},
-					"BA1" : { "db": ["informatics"], "thresholds": {"threshold1": 0.84}}
+					"PM2" : { "db": {"name": ["informatics"], "in_use": ["true"]}, "threshold": {"value": 0.47, "type": "type"}},
+					"PP3" : { "db": {"name": ["UCSC"], "in_use": ["true"]}, "threshold": {"value": 0.43, "type": "type"}},
+					"BA1" : { "db": {"name": ["informatics"], "in_use": ["true"]}, "threshold": {"value": 0.64, "type": "type"}}
 				}
 			}
 		}
@@ -48,11 +48,11 @@
 			"KRTAP5-7:NM_001012503:exon1:c.329_330insCTGCTGCCAGTCCAGCTGCTGTAAGCCCTG:p.S110delinsSCCQSSCCKPC": {
 				"pathogenicity": "benign", 
 				"definitions": {
-					"PM2" : { "db": ["UCSC"], "thresholds": {"threshold1": 0.94}},
-					"PP3" : { "db": ["informatics"], "thresholds": {"threshold1": 0.4}},
-					"BA1" : { "db": ["informatics"], "thresholds": {"threshold1": 0.73}},
-					"BP3" : { "db": ["informatics", "UCSC"], "thresholds": {"threshold1": 0.28}},
-					"BP4" : { "db": ["informatics"], "thresholds": {"threshold1": 0.38}}
+					"PM2" : { "db": {"name": ["informatics"], "in_use": ["true"]}, "threshold": {"value": 0.94, "type": "type"}},
+					"PP3" : { "db": {"name": ["UCSC","informatics"], "in_use": ["true","false"]}, "threshold": {"value": 0.64, "type": "type"}},
+					"BA1" : { "db": {"name": ["UCSC"], "in_use": ["true"]}, "threshold": {"value": 0.73, "type": "type"}},
+					"BP3" : { "db": {"name": ["informatics"], "in_use": ["true"]}, "threshold": {"value": 0.39, "type": "type"}},
+					"BP4" : { "db": {"name": ["UCSC"], "in_use": ["true"]}, "threshold": {"value": 0.93, "type": "type"}}
 				}
 			}
 		}
@@ -62,10 +62,10 @@
 			"SAMD4A:NM_015589:exon6:c.G1450T:p.A484S": {
 				"pathogenicity": "benign", 
 				"definitions": {
-					"PM2" : { "db": ["informatics", "UCSC"], "thresholds": {"threshold1": 0.40}},
-					"PP3" : { "db": ["UCSC", "informatics"], "thresholds": {"threshold1": 0.04}},
-					"BA1" : { "db": ["informatics"], "thresholds": {"threshold1": 0.38}},
-					"BP4" : { "db": ["informatics"], "thresholds": {"threshold1": 0.63}}
+					"PM2" : { "db": {"name": ["informatics","UCSC"], "in_use": ["true"]}, "threshold": {"value": 0.40, "type": "type"}},
+					"PP3" : { "db": {"name": ["UCSC"], "in_use": ["true"]}, "threshold": {"value": 0.04, "type": "type"}},
+					"BA1" : { "db": {"name": ["informatics"], "in_use": ["true"]}, "threshold": {"value": 0.38, "type": "type"}},
+					"BP4" : { "db": {"name": ["UCSC"], "in_use": ["true"]}, "threshold": {"value": 0.63, "type": "type"}}
 				}
 			}
 		}
@@ -75,9 +75,9 @@
 			"CHRNB4:NM_001256567:exon5:c.G677A:p.G226D": {
 				"pathogenicity": "benign", 
 				"definitions": {
-					"PM2" : { "db": ["informatics"], "thresholds": {"threshold1": 0.43}},
-					"PP3" : { "db": ["informatics"], "thresholds": {"threshold1": 0.35}},
-					"BA1" : { "db": ["informatics"], "thresholds": {"threshold1": 0.74}}
+					"PM2" : { "db": {"name": ["informatics"], "in_use": ["true"]}, "threshold": {"value": 0.43, "type": "type"}},
+					"PP3" : { "db": {"name": ["UCSC"], "in_use": ["true"]}, "threshold": {"value": 0.35, "type": "type"}},
+					"BA1" : { "db": {"name": ["informatics"], "in_use": ["true"]}, "threshold": {"value": 0.74, "type": "type"}}
 				}
 			}
 		}
@@ -87,10 +87,10 @@
 			"C1QTNF8:NM_207419:exon4:c.763+1G>T": {
 				"pathogenicity": "benign", 
 				"definitions": {
-					"PM2" : { "db": ["informatics"], "thresholds": {"threshold1": 0.46}},
-					"PP3" : { "db": ["informatics", "UCSC"], "thresholds": {"threshold1": 0.38}},
-					"BA1" : { "db": ["informatics"], "thresholds": {"threshold1": 0.85}},
-					"BP4" : { "db": ["informatics", "UCSC"], "thresholds": {"threshold1": 0.35}}
+					"PM2" : { "db": {"name": ["informatics"], "in_use": ["true"]}, "threshold": {"value": 0.46, "type": "type"}},
+					"PP3" : { "db": {"name": ["UCSC"], "in_use": ["true"]}, "threshold": {"value": 0.38, "type": "type"}},
+					"BA1" : { "db": {"name": ["informatics","UCSC"], "in_use": ["false","false"]}, "threshold": {"value": 0.85, "type": "type"}},
+					"BP4" : { "db": {"name": ["UCSC","informatics"], "in_use": ["true","true"]}, "threshold": {"value": 0.35, "type": "type"}}
 				}
 			}
 		},
@@ -98,10 +98,10 @@
 			"NTN3:NM_006181:exon1:c.142_195del:p.48_65del": {
 				"pathogenicity": "benign", 
 				"definitions": {
-					"PM2" : { "db": ["UCSC", "informatics"], "thresholds": {"threshold1": 0.68}},
-					"PP3" : { "db": ["UCSC"], "thresholds": {"threshold1": 0.29}},
-					"BA1" : { "db": ["UCSC", "informatics"], "thresholds": {"threshold1": 0.10}},
-					"BP4" : { "db": ["informatics"], "thresholds": {"threshold1": 0.9}}
+					"PM2" : { "db": {"name": ["informatics"], "in_use": ["true"]}, "threshold": {"value": 0.68, "type": "type"}},
+					"PP3" : { "db": {"name": ["UCSC"], "in_use": ["true"]}, "threshold": {"value": 0.29, "type": "type"}},
+					"BA1" : { "db": {"name": ["informatics"], "in_use": ["true"]}, "threshold": {"value": 0.10, "type": "type"}},
+					"BP4" : { "db": {"name": ["informatics","UCSC"], "in_use": ["true","false"]}, "threshold": {"value": 0.9, "type": "type"}}
 				}
 			}
 		},
@@ -109,8 +109,8 @@
 			"CES3:NM_024922:exon9:c.C1099T:p.R367W": {
 				"pathogenicity": "benign", 
 				"definitions": {
-					"PM2" : { "db": ["informatics"], "thresholds": {"threshold1": 0.4}},
-					"BA1" : { "db": ["informatics"], "thresholds": {"threshold1": 0.4}}
+					"PM2" : { "db": {"name": ["UCSC"], "in_use": ["true"]}, "threshold": {"value": 0.4, "type": "type"}},
+					"BA1" : { "db": {"name": ["informatics","UCSC"], "in_use": ["true","true"]}, "threshold": {"value": 0.4, "type": "type"}}
 				}
 			}
 		}
@@ -120,9 +120,9 @@
 			"FBN3:NM_032447:exon59:c.G7412A:p.R2471H": {
 				"pathogenicity": "benign", 
 				"definitions": {
-					"PM2" : { "db": ["informatics"], "thresholds": {"threshold1": 0.3}},
-					"PP3" : { "db": ["UCSC"], "thresholds": {"threshold1": 0.08}},
-					"BA1" : { "db": ["informatics", "UCSC"], "thresholds": {"threshold1": 0.4}}
+					"PM2" : { "db": {"name": ["UCSC"], "in_use": ["false"]}, "threshold": {"value": 0.3, "type": "type"}},
+					"PP3" : { "db": {"name": ["informatics"], "in_use": ["true"]}, "threshold": {"value": 0.08, "type": "type"}},
+					"BA1" : { "db": {"name": ["UCSC"], "in_use": ["true"]}, "threshold": {"value": 0.4, "type": "type"}}
 				}
 			}
 		}
@@ -132,9 +132,9 @@
 			"CACNA1I:NM_001003406:exon31:c.C5180T:p.P1727L": {
 				"pathogenicity": "benign", 
 				"definitions": {
-					"PM2" : { "db": ["informatics"], "thresholds": {"threshold1": 0.4}},
-					"PP3" : { "db": ["informatics", "UCSC"], "thresholds": {"threshold1": 0.57}},
-					"BA1" : { "db": ["informatics"], "thresholds": {"threshold1": 0.4}}
+					"PM2" : { "db": {"name": ["informatics"], "in_use": ["true"]}, "threshold": {"value": 0.44, "type": "type"}},
+					"PP3" : { "db": {"name": ["UCSC","informatics"], "in_use": ["true","true"]}, "threshold": {"value": 0.51, "type": "type"}},
+					"BA1" : { "db": {"name": ["informatics","UCSC"], "in_use": ["false","false"]}, "threshold": {"value": 0.64, "type": "type"}}
 				}
 			}
 		}
@@ -144,10 +144,10 @@
 			"ARMCX4:NM_001256155:exon2:c.5462delC:p.A1821fs": {
 				"pathogenicity": "benign", 
 				"definitions": {
-					"PM2" : { "db": ["informatics"], "thresholds": {"threshold1": 0.03}},
-					"PP3" : { "db": ["UCSC", "informatics"], "thresholds": {"threshold1": 0.34}},
-					"BA1" : { "db": ["informatics"], "thresholds": {"threshold1": 0.07}},
-					"BP4" : { "db": ["informatics"], "thresholds": {"threshold1": 0.34}}
+					"PM2" : { "db": {"name": ["UCSC"], "in_use": ["true"]}, "threshold": {"value": 0.03, "type": "type"}},
+					"PP3" : { "db": {"name": ["informatics","UCSC"], "in_use": ["false","false"]}, "threshold": {"value": 0.34, "type": "type"}},
+					"BA1" : { "db": {"name": ["informatics"], "in_use": ["true"]}, "threshold": {"value": 0.07, "type": "type"}},
+					"BP4" : { "db": {"name": ["UCSC"], "in_use": ["true"]}, "threshold": {"value": 0.34, "type": "type"}}
 				}
 			}
 		}
@@ -157,10 +157,10 @@
 			"ALMS1:NM_015120:exon1:c.45_46insGAGGAA:p.E15delinsEEE": {
 				"pathogenicity": "likely benign", 
 				"definitions": {
-					"PM2" : { "db": ["informatics"], "thresholds": {"threshold1": 0.43}},
-					"PP3" : { "db": ["UCSC", "informatics"], "thresholds": {"threshold1": 0.47}},
-					"BP3" : { "db": ["informatics"], "thresholds": {"threshold1": 0.41}},
-					"BP4" : { "db": ["UCSC"], "thresholds": {"threshold1": 0.49}}
+					"PM2" : { "db": {"name": ["informatics"], "in_use": ["true"]}, "threshold": {"value": 0.43, "type": "type"}},
+					"PP3" : { "db": {"name": ["UCSC","informatics"], "in_use": ["true","true"]}, "threshold": {"value": 0.47, "type": "type"}},
+					"BP3" : { "db": {"name": ["informatics"], "in_use": ["true"]}, "threshold": {"value": 0.41, "type": "type"}},
+					"BP4" : { "db": {"name": ["UCSC"], "in_use": ["true"]}, "threshold": {"value": 0.49, "type": "type"}}
 				}
 			}
 		}
@@ -170,10 +170,10 @@
 			"ARL6IP4:NM_001278379:exon2:c.G304A:p.A102T": {
 				"pathogenicity": "likely benign", 
 				"definitions": {
-					"PM2" : { "db": ["GenBank"], "thresholds": {"threshold1": 0.4}},
-					"PP3" : { "db": ["informatics"], "thresholds": {"threshold1": 0.4}},
-					"BP4" : { "db": ["informatics"], "thresholds": {"threshold1": 0.4}},
-					"BP7" : { "db": ["GenBank"], "thresholds": {"threshold1": 0.4}}
+					"PM2" : { "db": {"name": ["GenBank"], "in_use": ["false"]}, "threshold": {"value": 0.48, "type": "type"}},
+					"PP3" : { "db": {"name": ["UCSC"], "in_use": ["true"]}, "threshold": {"value": 0.4, "type": "type"}},
+					"BP4" : { "db": {"name": ["informatics"], "in_use": ["true"]}, "threshold": {"value": 0.64, "type": "type"}},
+					"BP7" : { "db": {"name": ["GenBank"], "in_use": ["true"]}, "threshold": {"value": 0.4, "type": "type"}}
 				}
 			}
 		}
@@ -183,10 +183,10 @@
 			"KDM6B:NM_001080424:exon11:c.1417_1419del:p.473_473del": {
 				"pathogenicity": "likely benign", 
 				"definitions": {
-					"PM2" : { "db": ["informatics"], "thresholds": {"threshold1": 0.4}},
-					"PP3" : { "db": ["informatics", "GenBank"], "thresholds": {"threshold1": 0.4}},
-					"BA1" : { "db": ["informatics", "GenBank"], "thresholds": {"threshold1": 0.4}},
-					"BP4" : { "db": ["informatics"], "thresholds": {"threshold1": 0.4}}
+					"PM2" : { "db": {"name": ["GenBank"], "in_use": ["true"]}, "threshold": {"value": 0.4, "type": "type"}},
+					"PP3" : { "db": {"name": ["UCSC"], "in_use": ["true"]}, "threshold": {"value": 0.64, "type": "type"}},
+					"BA1" : { "db": {"name": ["UCSC","GenBank"], "in_use": ["true","false"]}, "threshold": {"value": 0.64, "type": "type"}},
+					"BP4" : { "db": {"name": ["informatics"], "in_use": ["true"]}, "threshold": {"value": 0.4, "type": "type"}}
 				}
 			}
 		}

@@ -20,7 +20,7 @@ class Menu {
 
 		var g = new PointText({
 		    point: [500, 515],
-		    content: 'G',
+		    content: 'B',
 		    fillColor: 'black',
 		    fontFamily: 'Courier New',
 		    fontWeight: 'bold',
@@ -30,7 +30,7 @@ class Menu {
 
 		var e = new PointText({
 		    point: [500, 530],
-		    content: 'e',
+		    content: 'a',
 		    fillColor: 'black',
 		    fontFamily: 'Courier New',
 		    fontWeight: 'bold',
@@ -40,7 +40,7 @@ class Menu {
 
 		var n = new PointText({
 		    point: [500, 545],
-		    content: 'n',
+		    content: 'c',
 		    fillColor: 'black',
 		    fontFamily: 'Courier New',
 		    fontWeight: 'bold',
@@ -50,7 +50,7 @@ class Menu {
 
 		var e2 = new PointText({
 		    point: [500, 560],
-		    content: 'e',
+		    content: 'k',
 		    fillColor: 'black',
 		    fontFamily: 'Courier New',
 		    fontWeight: 'bold',
@@ -132,6 +132,11 @@ class Menu {
 		angles = this.calAngles(segLen, totalLen);
 		//console.log(angles);
 		var newgroup = this.createLines(angles, x, y, innerRadius, outerRadius);
+
+		
+		var gGroup = new Group();
+
+		var total = 0;
 		//console.log(newgroup);
 
 		let options = Object.keys(data); 
@@ -141,12 +146,67 @@ class Menu {
 		//let innerRadius = 115;
 
 		options.forEach( (option, i) => {
+			if(i == 0){
+				var gName = new Group();
+				var name = new PointText({
+			    point: [580, 600],
+			    content: options[i],
+			    fillColor: 'black',
+			    fontFamily: 'Courier New',
+			    fontWeight: 'bold',
+				rotation: 90,
+			    fontSize: 25
+			});
+				var firstAngle = ((-1)*(angles[i]/2))+360;
+				//name.pivot = (x,y);
+				//name.pivot.x = x;
+				//console.log('Name is '+name);
+				//name.rotation = firstAngle;
+				gName.addChild(name);
+				gGroup.addChild(gName);
+				//console.log(gName);
+				gName.pivot = (x,y);
+				gName.pivot.x = x;
+				gName.pivot.y = y;
+				gName.rotation = firstAngle;
+				console.log(angles[i]);
+				console.log('The rotation angle is '+ firstAngle);
+				console.log('The value of i is '+i);
+				//gName.removeChildren();
+			}
+			else{
+				var gName = new Group();
+				total = total + (angles[i]/2);
+				console.log(angles[i]);
+				console.log('The rotation angle is '+total);
+				console.log('The value of i is '+i);
+				
+				var name = new PointText({
+			    point: [580, 600],
+			    content: options[i],
+			    fillColor: 'black',
+			    fontFamily: 'Courier New',
+			    fontWeight: 'bold',
+				rotation: 90,
+			    fontSize: 25
+			});
+
+				gName.addChild(name);
+				gGroup.addChild(gName);
+				//gName.addChild(new PointText(new Point(580, 600)));
+				//gName.children[i].fillColor = 'black';
+				//gName.children[i].content = options[i];
+				gName.pivot = (x,y);
+				gName.pivot.x = x;
+				gName.pivot.y = y;
+				gName.rotation = total;
+		}
+			//console.log(gName);
 			//console.log("The option is "+option);
 			//console.log("The gene num is "+i);
 			//console.log(option);
-			//console.log(data[option]);
-			this.rotateLines(i, newgroup.group1, newgroup.array1, group, data[option]);
-
+			//console.log(options[i]);
+			this.rotateLines(i, newgroup.group1, newgroup.array1, group, data[option], gGroup);
 		})
 
 		//this.geneText();
@@ -255,7 +315,42 @@ class Menu {
 		return {group1: group, array1: angleRef};
 	}
 
-	rotateLines(num, group, angleRef, group2, nextLayer){
+/*
+	createNames(angle, pivotx, pivoty, pointIn, pointOut){
+		var i;
+		var angleRef = [];
+		var totalAngle = 0;
+		//var from = new Point(pivotx+pointIn, pivoty);
+		//var to = new Point(pivotx+pointOut, pivoty);
+		//var group = new Group([new Path.Line(from, to)]);
+		//group.children[0].pivot = (pivotx,pivoty);
+		//group.children[0].pivot.x = pivotx;
+		//group.children[0].pivot.y = pivoty;
+		//group.strokeColor = 'black';
+		//angleRef[0] = 0;
+
+		//console.log("Line created");
+
+
+		for(i = 1; i < angle.length; i++){
+			//totalAngle = totalAngle + angle[i];
+			angleRef[i] = totalAngle;
+			group.addChild(new Path.Line(from, to));
+			//console.log(group);
+			group.strokeColor = 'black';
+			group.children[i].pivot = (pivotx,pivoty);
+			group.children[i].pivot.x = pivotx;
+			group.children[i].pivot.y = pivoty;
+			group.children[i].rotate(angleRef[i]);
+			
+		}
+
+		//return (group, angleRef);
+		//return {group1: group, array1: angleRef};
+	}
+	*/
+
+	rotateLines(num, group, angleRef, group2, nextLayer, geneName){
 		var i;
 		var count = 1;
 		var angleOne = angleRef[num];
@@ -267,7 +362,8 @@ class Menu {
 		var menuTwo;
 		//console.log(group.children[num]);
 		//console.log(num);
-		group.children[num].onClick = function(event) {
+		geneName.children[num].onClick = function(event) {
+			geneName.visible = false;
 			//console.log(this);
     		//this.fillColor = 'red';
     		for(i = num+1; i < angleRef.length; i++){
@@ -344,6 +440,7 @@ class Menu {
 		group2.onClick = function(event) {
 			console.log(menuTwo);
 			group2.visible = false;
+			geneName.visible = true;
 			count = 1;
 			console.log(angleRot);
 			//console.log(this);
