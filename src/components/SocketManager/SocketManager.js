@@ -9,4 +9,8 @@ class SocketManager {
       console.log('Socket connected.');
     })
   }
+
+  getInstance() {
+    return this.socket;
+  }
 }

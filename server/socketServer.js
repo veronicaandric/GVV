@@ -16,7 +16,7 @@ const socketServer = (app) => {
 
   tableIO.on('connection', (socket) => {
     socket.emit('connected');
-    socket.on('fromMain', (msg) => {
+    socket.on('fromTable', (msg) => {
       switch (msg.target) {
         case 'wall':
           wallIO.emit('fromServer', msg);
