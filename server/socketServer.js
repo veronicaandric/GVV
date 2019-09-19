@@ -11,8 +11,8 @@ const socketServer = (app) => {
   });
 
   const tableIO = socketIO.of('/pages/table');
-  const wallIO = socketIO.of('/wall');
-  const mobileIO = socketIO.of('/mobile');
+  const wallIO = socketIO.of('/pages/wall');
+  const mobileIO = socketIO.of('/pages/mobile');
 
   tableIO.on('connection', (socket) => {
     socket.emit('connected');
@@ -34,7 +34,6 @@ const socketServer = (app) => {
 
   wallIO.on('connection', (socket) => {
     socket.emit('connected');
-
     socket.on('fromWall', (msg) => {
       switch (msg.target) {
         case 'table':
@@ -53,7 +52,6 @@ const socketServer = (app) => {
 
   mobileIO.on('connection', (socket) => {
     socket.emit('connected');
-
     socket.on('fromMobile', (msg) => {
       switch (msg.target) {
         case 'table':
